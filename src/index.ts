@@ -1,5 +1,8 @@
 import express from 'express';
 import urlRoutes from './routes/urlRoutes';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 import mongoose from 'mongoose';
 
@@ -17,7 +20,7 @@ app.use('/api', urlRoutes);
 
 const startServer = async () => {
   try {
-    await mongoose.connect('mongodb+srv://akhil23:S1O5pVNPR2l7DQfR@cluster0.6ft1lt8.mongodb.net/urlshortner');
+    await mongoose.connect(process.env.MONGO_URL as string)
     console.log('MongoDB connected');
 
     app.listen(PORT, () => {
