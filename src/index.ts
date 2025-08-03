@@ -1,6 +1,8 @@
 import express from 'express';
 import urlRoutes from './routes/urlRoutes';
 import dotenv from 'dotenv';
+import path  from 'path';
+import { Request, Response } from 'express';
 dotenv.config();
 
 
@@ -10,13 +12,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/api', (_req, res) => {
   res.send('Server is up and running');
 });
 
-app.use('/api', urlRoutes);
-
+app.use('/', urlRoutes);
 
 const startServer = async () => {
   try {
