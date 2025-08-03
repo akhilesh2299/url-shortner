@@ -2,7 +2,6 @@ import express from 'express';
 import urlRoutes from './routes/urlRoutes';
 import dotenv from 'dotenv';
 import path  from 'path';
-import { Request, Response } from 'express';
 dotenv.config();
 
 
@@ -28,7 +27,7 @@ const startServer = async () => {
     console.log('MongoDB connected');
 
     app.listen(PORT, () => {
-      console.log(`Server running at http://localhost:${PORT}`);
+      console.log(`Server running at: ${PORT}`);
     });
   } catch (err) {
     console.error('MongoDB connection failed:', err);
